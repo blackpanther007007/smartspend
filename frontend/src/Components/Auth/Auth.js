@@ -1,36 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Box, Paper, Grid, Typography, Container } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Input from './Input';
+import { AuthContext } from '../../context/AuthProvider';
+import { fetchUser } from '../../utils/fetchUser';
 
-const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
-
-  const [formData, setFormData] = useState(initialState);
+  const navigate = useNavigate();
+  const {authData, setAuthData, login, register, initialState} = useContext(AuthContext);
   const [isSignup, setIsSignup] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);
 
   const switchMode = () => {
-    setFormData(initialState);
+    setAuthData(initialState);
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log(authData);
+    if (isSignup) {
+      register(authData);
+    } else {
+      login(authData);
+    }
 
-    
-
-
+    const User = fetchUser();
+    if (User)
+    navigate('/', { replace: true });
   };
 
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setAuthData({ ...authData, [e.target.name]: e.target.value });
   }
 
   return (
@@ -77,7 +84,7 @@ const Auth = () => {
         </form>
       </Paper>
     </Container>
-  );
-};
+  )
+}
 
 export default Auth;
