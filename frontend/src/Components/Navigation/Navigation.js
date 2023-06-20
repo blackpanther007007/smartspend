@@ -3,8 +3,13 @@ import styled from 'styled-components'
 import avatar from '../../img/avatar.png'
 import { signout } from '../../utils/Icons'
 import { menuItems } from '../../utils/menuItems'
+import { useNavigate } from 'react-router-dom'
 
 function Navigation({active, setActive}) {
+    const history=useNavigate();
+    const signoutit=()=>{
+          history('/');
+    }
     
     return (
         <NavStyled>
@@ -28,7 +33,7 @@ function Navigation({active, setActive}) {
                 })}
             </ul>
             <div className="bottom-nav">
-                <li>
+                <li onClick={signoutit}>
                     {signout} Sign Out
                 </li>
             </div>

@@ -37,6 +37,9 @@ const IncomeSchema = new mongoose.Schema({
         maxLength: 20,
         trim: true
     },
+    userId:{
+        type:String,
+    }
 }, {timestamps: true})
 
 export default mongoose.model("Income", IncomeSchema);

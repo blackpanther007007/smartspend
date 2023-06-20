@@ -8,9 +8,10 @@ import IncomeItem from '../IncomeItem/IncomeItem';
 function Income() {
     const {addIncome,incomes, getIncomes, deleteIncome, totalIncome} = useGlobalContext()
 
+    getIncomes();
     useEffect(() =>{
-        getIncomes()
-    }, [])
+        getIncomes();
+    }, [incomes])
     return (
         <IncomeStyled>
             <InnerLayout>
