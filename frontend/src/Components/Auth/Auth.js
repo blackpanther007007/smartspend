@@ -25,14 +25,10 @@ const Auth = () => {
     e.preventDefault();
     console.log(authData);
     if (isSignup) {
-      register(authData);
+      register(authData, navigate);
     } else {
-      login(authData);
+      login(authData, navigate);
     }
-
-    const User = fetchUser();
-    if (User)
-    navigate('/', { replace: true });
   };
 
 

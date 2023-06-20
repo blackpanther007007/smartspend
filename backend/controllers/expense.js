@@ -9,7 +9,8 @@ export const addExpense = async (req, res) => {
         amount,
         category,
         description,
-        date
+        date,
+        user: req.userId
     })
 
     try {
@@ -31,7 +32,7 @@ export const addExpense = async (req, res) => {
 
 export const getExpense = async (req, res) =>{
     try {
-        const incomes = await ExpenseSchema.find().sort({createdAt: -1})
+        const incomes = await ExpenseSchema.find({user: req.userId}).sort({createdAt: -1})
         res.status(200).json(incomes)
     } catch (error) {
         res.status(500).json({message: 'Server Error'})

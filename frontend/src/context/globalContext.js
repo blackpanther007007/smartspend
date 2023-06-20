@@ -1,71 +1,82 @@
 import React, { useContext, useState } from "react"
 import axios from 'axios'
 
-
-const BASE_URL = "http://localhost:5000/api/v1/";
-
-
 const GlobalContext = React.createContext()
 
-export const GlobalProvider = ({children}) => {
+export const GlobalProvider = ({ children }) => {
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
     const [error, setError] = useState(null)
 
-    //calculate incomes
-    const addIncome = async (income) => {
-        const response = await axios.post(`${BASE_URL}add-income`, income)
-            .catch((err) =>{
-                setError(err.response.data.message)
-            })
-        getIncomes()
+    const API = axios.create({ baseURL: 'http://localhost:5000' });
+
+    API.interceptors.request.use((req) => {
+        if (localStorage.getItem('profile')) {
+            req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+        }
+
+        return req;
+    });
+
+    const addIncome = (income) => {
+        API.post('/transaction/add-income', income);
+        getIncomes();
     }
 
     const getIncomes = async () => {
-        const response = await axios.get(`${BASE_URL}get-incomes`)
-        setIncomes(response.data)
-        console.log(response.data)
+        try {
+            const response = await API.get('/transaction/get-incomes');
+            setIncomes(response.data);
+        } catch (error) {
+            throw new Error(error.response.data.message);
+        }
     }
 
     const deleteIncome = async (id) => {
-        const res  = await axios.delete(`${BASE_URL}delete-income/${id}`)
-        getIncomes()
+        try {
+            const response = await API.delete(`/transaction/delete-income/${id}`);
+            getIncomes();
+        } catch (error) {
+            throw new Error(error.response.data.message);
+        }
     }
 
     const totalIncome = () => {
         let totalIncome = 0;
-        incomes.forEach((income) =>{
+        incomes.forEach((income) => {
             totalIncome = totalIncome + income.amount
         })
 
         return totalIncome;
     }
 
-
-    //calculate incomes
-    const addExpense = async (income) => {
-        const response = await axios.post(`${BASE_URL}add-expense`, income)
-            .catch((err) =>{
-                setError(err.response.data.message)
-            })
-        getExpenses()
+    const addExpense = (income) => {
+        API.post('/transaction/add-expense', income);
+        getExpenses();
     }
 
     const getExpenses = async () => {
-        const response = await axios.get(`${BASE_URL}get-expenses`)
-        setExpenses(response.data)
-        console.log(response.data)
+        try {
+            const response = await API.get('/transaction/get-expenses');
+            setExpenses(response.data);
+        } catch (error) {
+            throw new Error(error.response.data.message);
+        }
     }
 
     const deleteExpense = async (id) => {
-        const res  = await axios.delete(`${BASE_URL}delete-expense/${id}`)
-        getExpenses()
+        try {
+            const response = await API.delete(`/transaction/delete-expense/${id}`);
+            getExpenses();
+        } catch (error) {
+            throw new Error(error.response.data.message);
+        }
     }
 
     const totalExpenses = () => {
         let totalIncome = 0;
-        expenses.forEach((income) =>{
+        expenses.forEach((income) => {
             totalIncome = totalIncome + income.amount
         })
 
@@ -109,6 +120,6 @@ export const GlobalProvider = ({children}) => {
     )
 }
 
-export const useGlobalContext = () =>{
+export const useGlobalContext = () => {
     return useContext(GlobalContext)
 }

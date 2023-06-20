@@ -20,7 +20,7 @@ function App() {
       <AuthProvider>
       <Routes>
         <Route path="login" element={<Auth />} />
-        <Route path="/*" element={<Home />} />
+        <Route path="/*" element={<Container />} />
       </Routes>
       </AuthProvider>
     </div>
