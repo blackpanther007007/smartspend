@@ -24,6 +24,7 @@ const Auth = () => {
   const handlesubmit=()=>{
     const data= formData;
     console.log(data);
+    
     history('/app');
 
   }
