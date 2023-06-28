@@ -1,0 +1,131 @@
+
+
+  .landing-page {
+    background-image: url(https://images.unsplash.com/photo-1634655377962-e6e7b446e7e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+  }
+
+  
+  /* Header styles */
+  .header {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    list-style: none;
+  }
+  
+  .nav-item {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  
+  .nav-item a {
+    text-decoration: none;
+    color: #333333;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-item a:hover {
+    color: #000000;
+  }
+  
+  /* Hero section styles */
+  .hero {
+    background-image: blue;
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .hero-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .hero-description {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .hero-button {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border: none;
+    color: #333333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero-button:hover {
+    background-color: #eeeeee;
+  }
+  
+  /* Section styles */
+  .section {
+    padding: 80px 0;
+    text-align: center;
+  }
+  
+  .section-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .section p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .section ul {
+    list-style: none;
+  }
+  
+  /* Footer styles */
+  .footer {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+  }
+
+
+  
+  .landing-page{
+    color: rgb(31, 12, 12);
+  }
+  .logo img{
+     width: 5rem;
+
+  }
